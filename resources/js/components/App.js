@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import 'semantic-ui-css/semantic.min.css';
+import Nav from './Nav'
+import MusicList from './MusicList'
+import AddMusic from './AddMusic'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+  } from "react-router-dom";
 
-class App extends Component {
-    state = {
-        counter : 1
-    }
-
-    incrementCounter = () => {
-        let counterNew = this.state.counter + 1
-        this.setState({
-            counter: counterNew
-        })
-    }
-
-    render(){
-        return(
-        <div>
-            <div className="container mt-5">
-                <h3>Test - {this.state.counter}</h3>
-                <p>
-                    <button className="btn btn-success btn-lg" onClick={this.incrementCounter}>+</button>
-                </p>
-            </div>
-        </div>
+function App() { 
+    return(
+        <Router>
+            <>
+                <Nav />
+                <Switch>
+                    <Route path="/" exact component={MusicList} />
+                    <Route path="/addMusic" exact componnent={AddMusic} />
+                </Switch>
+            </>
+        </Router>
+        
         )
-    }
 }
 
 export default App;

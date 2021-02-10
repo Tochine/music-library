@@ -1,20 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Example() {
-    return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Example Component Updated</div>
+class Example extends Component {
+    state = {
+        counter : 1
+    }
 
-                        <div className="card-body">I'm an example component!</div>
-                    </div>
-                </div>
+    incrementCounter = () => {
+        let counterNew = this.state.counter + 1
+        this.setState({
+            counter: counterNew
+        })
+    }
+
+    render(){
+        return(
+        <div>
+            <div className="container mt-5">
+                <h3>Test - {this.state.counter}</h3>
+                <p>
+                    <button className="btn btn-success btn-lg" onClick={this.incrementCounter}>+</button>
+                </p>
             </div>
         </div>
-    );
+        )
+    }
 }
 
 export default Example;
