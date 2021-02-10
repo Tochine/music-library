@@ -15,6 +15,7 @@ function App() {
         <Router>
             <>
                 <Nav />
+                <AddMusic />
                 <Switch>
                     <Route path="/" exact component={MusicList} />
                     <Route path="/addMusic" exact componnent={AddMusic} />
