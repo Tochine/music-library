@@ -39,7 +39,7 @@ class MusicController extends Controller
     {
         //dd($request);
         $data = Validator::make($request->all(), [
-            'music_id' => 'required',
+            'musicId' => 'required',
             'title' => 'required',
             'artist' => 'required',
             'genre' => 'required',
@@ -51,13 +51,15 @@ class MusicController extends Controller
         }
 
         $music = Music::create([
-            'music_id' => $request->music_id,
+            'music_id' => $request->musicId,
             'title' => $request->title,
             'artist' => $request->artist,
             'genre' => $request->genre,
             'album' => $request->album
         ]);
-        
+
+        //$music = Music::create([$data]);
+
         if(is_null($music)){
             return response()->json([
                 'status' => false,

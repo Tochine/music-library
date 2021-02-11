@@ -25,6 +25,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.12.13",
         "react-bootstrap": "^1.4.3",
         "react-router-dom": "^5.2.0",
         "semantic-ui-css": "^2.4.1",

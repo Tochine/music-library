@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 const Nav = () => (
   <div>
     <Menu secondary attached='top'>
-        <Link>
+        <Link to="/">
             <Header as="h1">Music</Header>
         </Link>
         <Link to="/addMusic">

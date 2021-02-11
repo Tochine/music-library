@@ -5,7 +5,18 @@ class MusicList extends Component {
     render() {
         return(
             <div>
-                <h2>Hello Music List</h2>
+                <Table celled>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Muisic ID</Table.HeaderCell>
+                            <Table.HeaderCell>Title</Table.HeaderCell>
+                            <Table.HeaderCell>Artist</Table.HeaderCell>
+                            <Table.HeaderCell>Genre</Table.HeaderCell>
+                            <Table.HeaderCell>Album</Table.HeaderCell>
+                            <Table.HeaderCell>Actions</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                </Table>
             </div>
         )
     }

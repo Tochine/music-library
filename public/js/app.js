@@ -124,6 +124,17 @@ function _setPrototypeOf(o, p) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/@fluentui/react-component-ref/dist/es/Ref.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@fluentui/react-component-ref/dist/es/Ref.js ***!
@@ -2895,10 +2906,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/collections/Form/Form.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/elements/Container/Container.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/collections/Form/Form.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2923,6 +2945,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+ // import { Form, FormControl } from 'react-bootstrap'
+
 
 
 
@@ -2944,16 +2968,51 @@ var AddMusic = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      music_id: '',
+      musicId: '',
       title: '',
       artist: '',
       genre: '',
       album: ''
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleInput", function (e) {
+    _defineProperty(_assertThisInitialized(_this), "handleInputField", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
     });
+
+    _defineProperty(_assertThisInitialized(_this), "createNewMusic", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault(); // const music = {
+                //     musicId: this.state.musicId,
+                //     title: this.state.title,
+                //     artist: this.state.artist,
+                //     genre: this.state.genre,
+                //     album: this.state.album
+                // }
+
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/music/store', _this.state);
+
+              case 3:
+                response = _context.sent;
+                console.log(response);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
 
     return _this;
   }
@@ -2961,67 +3020,70 @@ var AddMusic = /*#__PURE__*/function (_Component) {
   _createClass(AddMusic, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Field, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Music ID"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              placeholder: "Music ID",
-              value: this.state.music_id,
-              onChange: this.handleInput,
-              required: true
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__.default, {
+            onSubmit: this.createNewMusic,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__.default.Field, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "Music ID"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                placeholder: "Music ID",
+                name: "musicId",
+                value: this.state.musicId,
+                onChange: this.handleInputField
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__.default.Field, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "Title"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                placeholder: "Title",
+                name: "title",
+                value: this.title,
+                onChange: this.handleInputField
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__.default.Field, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "Artist"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                placeholder: "Artist",
+                name: "artist",
+                value: this.state.artist,
+                onChange: this.handleInputField
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__.default.Field, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "Genre"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                placeholder: "Genre",
+                name: "genre",
+                value: this.state.genre,
+                onChange: this.handleInputField
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__.default.Field, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                children: "Album"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                placeholder: "Album",
+                name: "album",
+                value: this.state.album,
+                onChange: this.handleInputField
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__.default.Field, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                type: "submit",
+                className: "ui button",
+                value: "Add"
+              })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Field, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Title"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              placeholder: "Title",
-              value: this.state.title,
-              onChange: this.handleInput,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Field, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Artist"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              placeholder: "Artist",
-              value: this.state.artist,
-              onChange: this.handleInput,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Field, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Genre"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              placeholder: "Genre",
-              value: this.state.genre,
-              onChange: this.handleInput,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Field, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              children: "Album"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              placeholder: "Album",
-              value: this.state.album,
-              onChange: this.handleInput,
-              required: true
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Field, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "submit",
-              className: "ui button",
-              value: "Add"
-            })
-          })]
+          })
         })
       });
     }
   }]);
 
   return AddMusic;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddMusic);
 
@@ -3044,9 +3106,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Nav */ "./resources/js/components/Nav.js");
 /* harmony import */ var _MusicList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MusicList */ "./resources/js/components/MusicList.js");
 /* harmony import */ var _AddMusic__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddMusic */ "./resources/js/components/AddMusic.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/elements/Container/Container.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/collections/Grid/Grid.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -3061,16 +3126,25 @@ __webpack_require__.r(__webpack_exports__);
 function App() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Nav__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AddMusic__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
-          path: "/",
-          exact: true,
-          component: _MusicList__WEBPACK_IMPORTED_MODULE_4__.default
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
-          path: "/addMusic",
-          exact: true,
-          componnent: _AddMusic__WEBPACK_IMPORTED_MODULE_5__.default
-        })]
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Nav__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__.default.Row, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_9__.default.Column, {
+              width: 16,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Switch, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+                  path: "/",
+                  exact: true,
+                  component: _MusicList__WEBPACK_IMPORTED_MODULE_4__.default
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+                  path: "/addMusic",
+                  exact: true,
+                  component: _AddMusic__WEBPACK_IMPORTED_MODULE_5__.default
+                })]
+              })
+            })
+          })
+        })
       })]
     })
   });
@@ -3096,6 +3170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/collections/Table/Table.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -3123,6 +3198,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var MusicList = /*#__PURE__*/function (_Component) {
   _inherits(MusicList, _Component);
 
@@ -3138,8 +3214,25 @@ var MusicList = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-          children: "Hello Music List"
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default, {
+          celled: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Header, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.Row, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.HeaderCell, {
+                children: "Muisic ID"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.HeaderCell, {
+                children: "Title"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.HeaderCell, {
+                children: "Artist"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.HeaderCell, {
+                children: "Genre"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.HeaderCell, {
+                children: "Album"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.default.HeaderCell, {
+                children: "Actions"
+              })]
+            })
+          })
         })
       });
     }
@@ -3181,6 +3274,7 @@ var Nav = function Nav() {
       secondary: true,
       attached: "top",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+        to: "/",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__.default, {
           as: "h1",
           children: "Music"
@@ -82231,6 +82325,764 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function define(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+    return obj[key];
+  }
+  try {
+    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    define({}, "");
+  } catch (err) {
+    define = function(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunction.displayName = define(
+    GeneratorFunctionPrototype,
+    toStringTagSymbol,
+    "GeneratorFunction"
+  );
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      define(prototype, method, function(arg) {
+        return this._invoke(method, arg);
+      });
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      define(genFun, toStringTagSymbol, "GeneratorFunction");
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return PromiseImpl.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return PromiseImpl.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new PromiseImpl(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    if (PromiseImpl === void 0) PromiseImpl = Promise;
+
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList),
+      PromiseImpl
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  define(Gp, toStringTagSymbol, "Generator");
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : 0
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/resolve-pathname/esm/resolve-pathname.js":
 /*!***************************************************************!*\
   !*** ./node_modules/resolve-pathname/esm/resolve-pathname.js ***!
@@ -85229,6 +86081,326 @@ FormTextArea.defaultProps = {
 
 /***/ }),
 
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Grid/Grid.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Grid/Grid.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/SUI.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+/* harmony import */ var _GridColumn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./GridColumn */ "./node_modules/semantic-ui-react/dist/es/collections/Grid/GridColumn.js");
+/* harmony import */ var _GridRow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./GridRow */ "./node_modules/semantic-ui-react/dist/es/collections/Grid/GridRow.js");
+
+
+
+
+
+
+
+/**
+ * A grid is used to harmonize negative space in a layout.
+ */
+
+function Grid(props) {
+  var celled = props.celled,
+      centered = props.centered,
+      children = props.children,
+      className = props.className,
+      columns = props.columns,
+      container = props.container,
+      divided = props.divided,
+      doubling = props.doubling,
+      inverted = props.inverted,
+      padded = props.padded,
+      relaxed = props.relaxed,
+      reversed = props.reversed,
+      stackable = props.stackable,
+      stretched = props.stretched,
+      textAlign = props.textAlign,
+      verticalAlign = props.verticalAlign;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)('ui', (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(centered, 'centered'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(container, 'container'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(doubling, 'doubling'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(inverted, 'inverted'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(stackable, 'stackable'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(stretched, 'stretched'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(celled, 'celled'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(divided, 'divided'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(padded, 'padded'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(relaxed, 'relaxed'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useMultipleProp)(reversed, 'reversed'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useTextAlignProp)(textAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useVerticalAlignProp)(verticalAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(columns, 'column', true), 'grid', className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(Grid, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(Grid, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), children);
+}
+
+Grid.handledProps = ["as", "celled", "centered", "children", "className", "columns", "container", "divided", "doubling", "inverted", "padded", "relaxed", "reversed", "stackable", "stretched", "textAlign", "verticalAlign"];
+Grid.Column = _GridColumn__WEBPACK_IMPORTED_MODULE_7__.default;
+Grid.Row = _GridRow__WEBPACK_IMPORTED_MODULE_8__.default;
+Grid.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** A grid can have rows divided into cells. */
+  celled: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['internally'])]),
+
+  /** A grid can have its columns centered. */
+  centered: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** Represents column count per row in Grid. */
+  columns: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf([].concat(_lib__WEBPACK_IMPORTED_MODULE_9__.WIDTHS, ['equal'])),
+
+  /** A grid can be combined with a container to use the available layout and alignment. */
+  container: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A grid can have dividers between its columns. */
+  divided: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['vertically'])]),
+
+  /** A grid can double its column width on tablet and mobile sizes. */
+  doubling: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A grid's colors can be inverted. */
+  inverted: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A grid can preserve its vertical and horizontal gutters on first and last columns. */
+  padded: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['horizontally', 'vertically'])]),
+
+  /** A grid can increase its gutters to allow for more negative space. */
+  relaxed: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['very'])]),
+
+  /** A grid can specify that its columns should reverse order at different device sizes. */
+  reversed: _lib__WEBPACK_IMPORTED_MODULE_10__.multipleProp(['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically']),
+
+  /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
+  stackable: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A grid can stretch its contents to take up the entire grid height. */
+  stretched: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A grid can specify its text alignment. */
+  textAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_9__.TEXT_ALIGNMENTS),
+
+  /** A grid can specify its vertical alignment to have all its columns vertically centered. */
+  verticalAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_9__.VERTICAL_ALIGNMENTS)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Grid);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Grid/GridColumn.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Grid/GridColumn.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/SUI.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/factories.js");
+
+
+
+
+
+/**
+ * A column sub-component for Grid.
+ */
+
+function GridColumn(props) {
+  var children = props.children,
+      className = props.className,
+      computer = props.computer,
+      color = props.color,
+      floated = props.floated,
+      largeScreen = props.largeScreen,
+      mobile = props.mobile,
+      only = props.only,
+      stretched = props.stretched,
+      tablet = props.tablet,
+      textAlign = props.textAlign,
+      verticalAlign = props.verticalAlign,
+      widescreen = props.widescreen,
+      width = props.width;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)(color, (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(stretched, 'stretched'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useMultipleProp)(only, 'only'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useTextAlignProp)(textAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useValueAndKey)(floated, 'floated'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useVerticalAlignProp)(verticalAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(computer, 'wide computer'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(largeScreen, 'wide large screen'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(mobile, 'wide mobile'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(tablet, 'wide tablet'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(widescreen, 'wide widescreen'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(width, 'wide'), 'column', className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(GridColumn, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(GridColumn, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), children);
+}
+
+GridColumn.handledProps = ["as", "children", "className", "color", "computer", "floated", "largeScreen", "mobile", "only", "stretched", "tablet", "textAlign", "verticalAlign", "widescreen", "width"];
+GridColumn.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** A grid column can be colored. */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.COLORS),
+
+  /** A column can specify a width for a computer. */
+  computer: _lib__WEBPACK_IMPORTED_MODULE_8__.every([_lib__WEBPACK_IMPORTED_MODULE_8__.disallow(['width']), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.WIDTHS)]),
+
+  /** A column can sit flush against the left or right edge of a row. */
+  floated: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.FLOATS),
+
+  /** A column can specify a width for a large screen device. */
+  largeScreen: _lib__WEBPACK_IMPORTED_MODULE_8__.every([_lib__WEBPACK_IMPORTED_MODULE_8__.disallow(['width']), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.WIDTHS)]),
+
+  /** A column can specify a width for a mobile device. */
+  mobile: _lib__WEBPACK_IMPORTED_MODULE_8__.every([_lib__WEBPACK_IMPORTED_MODULE_8__.disallow(['width']), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.WIDTHS)]),
+
+  /** A column can appear only for a specific device, or screen sizes. */
+  only: _lib__WEBPACK_IMPORTED_MODULE_8__.multipleProp(_lib__WEBPACK_IMPORTED_MODULE_7__.VISIBILITY),
+
+  /** A column can stretch its contents to take up the entire grid or row height. */
+  stretched: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A column can specify a width for a tablet device. */
+  tablet: _lib__WEBPACK_IMPORTED_MODULE_8__.every([_lib__WEBPACK_IMPORTED_MODULE_8__.disallow(['width']), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.WIDTHS)]),
+
+  /** A column can specify its text alignment. */
+  textAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.TEXT_ALIGNMENTS),
+
+  /** A column can specify its vertical alignment to have all its columns vertically centered. */
+  verticalAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.VERTICAL_ALIGNMENTS),
+
+  /** A column can specify a width for a wide screen device. */
+  widescreen: _lib__WEBPACK_IMPORTED_MODULE_8__.every([_lib__WEBPACK_IMPORTED_MODULE_8__.disallow(['width']), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.WIDTHS)]),
+
+  /** Represents width of column. */
+  width: _lib__WEBPACK_IMPORTED_MODULE_8__.every([_lib__WEBPACK_IMPORTED_MODULE_8__.disallow(['computer', 'largeScreen', 'mobile', 'tablet', 'widescreen']), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.WIDTHS)])
+} : 0;
+GridColumn.create = (0,_lib__WEBPACK_IMPORTED_MODULE_9__.createShorthandFactory)(GridColumn, function (children) {
+  return {
+    children: children
+  };
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GridColumn);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Grid/GridRow.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Grid/GridRow.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/SUI.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+
+
+
+
+
+/**
+ * A row sub-component for Grid.
+ */
+
+function GridRow(props) {
+  var centered = props.centered,
+      children = props.children,
+      className = props.className,
+      color = props.color,
+      columns = props.columns,
+      divided = props.divided,
+      only = props.only,
+      reversed = props.reversed,
+      stretched = props.stretched,
+      textAlign = props.textAlign,
+      verticalAlign = props.verticalAlign;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)(color, (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(centered, 'centered'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(divided, 'divided'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(stretched, 'stretched'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useMultipleProp)(only, 'only'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useMultipleProp)(reversed, 'reversed'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useTextAlignProp)(textAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useVerticalAlignProp)(verticalAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(columns, 'column', true), 'row', className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(GridRow, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(GridRow, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), children);
+}
+
+GridRow.handledProps = ["as", "centered", "children", "className", "color", "columns", "divided", "only", "reversed", "stretched", "textAlign", "verticalAlign"];
+GridRow.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** A row can have its columns centered. */
+  centered: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** A grid row can be colored. */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.COLORS),
+
+  /** Represents column count per line in Row. */
+  columns: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf([].concat(_lib__WEBPACK_IMPORTED_MODULE_7__.WIDTHS, ['equal'])),
+
+  /** A row can have dividers between its columns. */
+  divided: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A row can appear only for a specific device, or screen sizes. */
+  only: _lib__WEBPACK_IMPORTED_MODULE_8__.multipleProp(_lib__WEBPACK_IMPORTED_MODULE_7__.VISIBILITY),
+
+  /** A row can specify that its columns should reverse order at different device sizes. */
+  reversed: _lib__WEBPACK_IMPORTED_MODULE_8__.multipleProp(['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically']),
+
+  /** A row can stretch its contents to take up the entire column height. */
+  stretched: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A row can specify its text alignment. */
+  textAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.TEXT_ALIGNMENTS),
+
+  /** A row can specify its vertical alignment to have all its columns vertically centered. */
+  verticalAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_7__.VERTICAL_ALIGNMENTS)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GridRow);
+
+/***/ }),
+
 /***/ "./node_modules/semantic-ui-react/dist/es/collections/Menu/Menu.js":
 /*!*************************************************************************!*\
   !*** ./node_modules/semantic-ui-react/dist/es/collections/Menu/Menu.js ***!
@@ -85737,6 +86909,702 @@ MenuMenu.propTypes =  true ? {
   position: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['left', 'right'])
 } : 0;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MenuMenu);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Table/Table.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Table/Table.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var lodash_es_without__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! lodash-es/without */ "./node_modules/lodash-es/without.js");
+/* harmony import */ var lodash_es_map__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lodash-es/map */ "./node_modules/lodash-es/map.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/childrenUtils.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/SUI.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+/* harmony import */ var _TableBody__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./TableBody */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableBody.js");
+/* harmony import */ var _TableCell__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./TableCell */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableCell.js");
+/* harmony import */ var _TableFooter__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./TableFooter */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableFooter.js");
+/* harmony import */ var _TableHeader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./TableHeader */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableHeader.js");
+/* harmony import */ var _TableHeaderCell__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./TableHeaderCell */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableHeaderCell.js");
+/* harmony import */ var _TableRow__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./TableRow */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableRow.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * A table displays a collections of data grouped into rows.
+ */
+
+function Table(props) {
+  var attached = props.attached,
+      basic = props.basic,
+      celled = props.celled,
+      children = props.children,
+      className = props.className,
+      collapsing = props.collapsing,
+      color = props.color,
+      columns = props.columns,
+      compact = props.compact,
+      definition = props.definition,
+      fixed = props.fixed,
+      footerRow = props.footerRow,
+      headerRow = props.headerRow,
+      headerRows = props.headerRows,
+      inverted = props.inverted,
+      padded = props.padded,
+      renderBodyRow = props.renderBodyRow,
+      selectable = props.selectable,
+      singleLine = props.singleLine,
+      size = props.size,
+      sortable = props.sortable,
+      stackable = props.stackable,
+      striped = props.striped,
+      structured = props.structured,
+      tableData = props.tableData,
+      textAlign = props.textAlign,
+      unstackable = props.unstackable,
+      verticalAlign = props.verticalAlign;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)('ui', color, size, (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(celled, 'celled'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(collapsing, 'collapsing'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(definition, 'definition'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(fixed, 'fixed'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(inverted, 'inverted'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(selectable, 'selectable'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(singleLine, 'single line'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(sortable, 'sortable'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(stackable, 'stackable'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(striped, 'striped'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(structured, 'structured'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(unstackable, 'unstackable'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(attached, 'attached'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(basic, 'basic'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(compact, 'compact'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOrValueAndKey)(padded, 'padded'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useTextAlignProp)(textAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useVerticalAlignProp)(verticalAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(columns, 'column'), 'table', className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(Table, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(Table, props);
+
+  if (!_lib__WEBPACK_IMPORTED_MODULE_7__.isNil(children)) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+      className: classes
+    }), children);
+  }
+
+  var hasHeaderRows = headerRow || headerRows;
+  var headerShorthandOptions = {
+    defaultProps: {
+      cellAs: 'th'
+    }
+  };
+  var headerElement = hasHeaderRows && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_TableHeader__WEBPACK_IMPORTED_MODULE_8__.default, null, _TableRow__WEBPACK_IMPORTED_MODULE_9__.default.create(headerRow, headerShorthandOptions), (0,lodash_es_map__WEBPACK_IMPORTED_MODULE_10__.default)(headerRows, function (data) {
+    return _TableRow__WEBPACK_IMPORTED_MODULE_9__.default.create(data, headerShorthandOptions);
+  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), headerElement, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_TableBody__WEBPACK_IMPORTED_MODULE_11__.default, null, renderBodyRow && (0,lodash_es_map__WEBPACK_IMPORTED_MODULE_10__.default)(tableData, function (data, index) {
+    return _TableRow__WEBPACK_IMPORTED_MODULE_9__.default.create(renderBodyRow(data, index));
+  })), footerRow && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_TableFooter__WEBPACK_IMPORTED_MODULE_12__.default, null, _TableRow__WEBPACK_IMPORTED_MODULE_9__.default.create(footerRow)));
+}
+
+Table.handledProps = ["as", "attached", "basic", "celled", "children", "className", "collapsing", "color", "columns", "compact", "definition", "fixed", "footerRow", "headerRow", "headerRows", "inverted", "padded", "renderBodyRow", "selectable", "singleLine", "size", "sortable", "stackable", "striped", "structured", "tableData", "textAlign", "unstackable", "verticalAlign"];
+Table.defaultProps = {
+  as: 'table'
+};
+Table.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** Attach table to other content */
+  attached: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['top', 'bottom'])]),
+
+  /** A table can reduce its complexity to increase readability. */
+  basic: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['very']), (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool)]),
+
+  /** A table may be divided each row into separate cells. */
+  celled: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** A table can be collapsing, taking up only as much space as its rows. */
+  collapsing: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can be given a color to distinguish it from other tables. */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_13__.COLORS),
+
+  /** A table can specify its column count to divide its content evenly. */
+  columns: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_13__.WIDTHS),
+
+  /** A table may sometimes need to be more compact to make more rows visible at a time. */
+  compact: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['very'])]),
+
+  /** A table may be formatted to emphasize a first column that defines a rows content. */
+  definition: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /**
+   * A table can use fixed a special faster form of table rendering that does not resize table cells based on content
+   */
+  fixed: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Shorthand for a TableRow to be placed within Table.Footer. */
+  footerRow: _lib__WEBPACK_IMPORTED_MODULE_14__.itemShorthand,
+
+  /** Shorthand for a TableRow to be placed within Table.Header. */
+  headerRow: _lib__WEBPACK_IMPORTED_MODULE_14__.every([_lib__WEBPACK_IMPORTED_MODULE_14__.disallow(['headerRows']), _lib__WEBPACK_IMPORTED_MODULE_14__.itemShorthand]),
+
+  /** Shorthand for multiple TableRows to be placed within Table.Header. */
+  headerRows: _lib__WEBPACK_IMPORTED_MODULE_14__.every([_lib__WEBPACK_IMPORTED_MODULE_14__.disallow(['headerRow']), _lib__WEBPACK_IMPORTED_MODULE_14__.collectionShorthand]),
+
+  /** A table's colors can be inverted. */
+  inverted: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table may sometimes need to be more padded for legibility. */
+  padded: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['very'])]),
+
+  /**
+   * Mapped over `tableData` and should return shorthand for each Table.Row to be placed within Table.Body.
+   *
+   * @param {*} data - An element in the `tableData` array.
+   * @param {number} index - The index of the current element in `tableData`.
+   * @returns {*} Shorthand for a Table.Row.
+   */
+  renderBodyRow: _lib__WEBPACK_IMPORTED_MODULE_14__.every([_lib__WEBPACK_IMPORTED_MODULE_14__.disallow(['children']), _lib__WEBPACK_IMPORTED_MODULE_14__.demand(['tableData']), (prop_types__WEBPACK_IMPORTED_MODULE_2___default().func)]),
+
+  /** A table can have its rows appear selectable. */
+  selectable: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can specify that its cell contents should remain on a single line and not wrap. */
+  singleLine: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can also be small or large. */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash_es_without__WEBPACK_IMPORTED_MODULE_15__.default)(_lib__WEBPACK_IMPORTED_MODULE_13__.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
+
+  /** A table may allow a user to sort contents by clicking on a table header. */
+  sortable: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can specify how it stacks table content responsively. */
+  stackable: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can stripe alternate rows of content with a darker color to increase contrast. */
+  striped: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can be formatted to display complex structured data. */
+  structured: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Data to be passed to the renderBodyRow function. */
+  tableData: _lib__WEBPACK_IMPORTED_MODULE_14__.every([_lib__WEBPACK_IMPORTED_MODULE_14__.disallow(['children']), _lib__WEBPACK_IMPORTED_MODULE_14__.demand(['renderBodyRow']), (prop_types__WEBPACK_IMPORTED_MODULE_2___default().array)]),
+
+  /** A table can adjust its text alignment. */
+  textAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash_es_without__WEBPACK_IMPORTED_MODULE_15__.default)(_lib__WEBPACK_IMPORTED_MODULE_13__.TEXT_ALIGNMENTS, 'justified')),
+
+  /** A table can specify how it stacks table content responsively. */
+  unstackable: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can adjust its text alignment. */
+  verticalAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_13__.VERTICAL_ALIGNMENTS)
+} : 0;
+Table.Body = _TableBody__WEBPACK_IMPORTED_MODULE_11__.default;
+Table.Cell = _TableCell__WEBPACK_IMPORTED_MODULE_16__.default;
+Table.Footer = _TableFooter__WEBPACK_IMPORTED_MODULE_12__.default;
+Table.Header = _TableHeader__WEBPACK_IMPORTED_MODULE_8__.default;
+Table.HeaderCell = _TableHeaderCell__WEBPACK_IMPORTED_MODULE_17__.default;
+Table.Row = _TableRow__WEBPACK_IMPORTED_MODULE_9__.default;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableBody.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Table/TableBody.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+
+
+
+
+
+
+function TableBody(props) {
+  var children = props.children,
+      className = props.className;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)(className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_4__.default)(TableBody, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(TableBody, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), children);
+}
+
+TableBody.handledProps = ["as", "children", "className"];
+TableBody.defaultProps = {
+  as: 'tbody'
+};
+TableBody.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TableBody);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableCell.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Table/TableCell.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var lodash_es_without__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lodash-es/without */ "./node_modules/lodash-es/without.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/childrenUtils.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/SUI.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/factories.js");
+/* harmony import */ var _elements_Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../elements/Icon */ "./node_modules/semantic-ui-react/dist/es/elements/Icon/Icon.js");
+
+
+
+
+
+
+
+/**
+ * A table row can have cells.
+ */
+
+function TableCell(props) {
+  var active = props.active,
+      children = props.children,
+      className = props.className,
+      collapsing = props.collapsing,
+      content = props.content,
+      disabled = props.disabled,
+      error = props.error,
+      icon = props.icon,
+      negative = props.negative,
+      positive = props.positive,
+      selectable = props.selectable,
+      singleLine = props.singleLine,
+      textAlign = props.textAlign,
+      verticalAlign = props.verticalAlign,
+      warning = props.warning,
+      width = props.width;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)((0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(active, 'active'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(collapsing, 'collapsing'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(disabled, 'disabled'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(error, 'error'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(negative, 'negative'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(positive, 'positive'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(selectable, 'selectable'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(singleLine, 'single line'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(warning, 'warning'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useTextAlignProp)(textAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useVerticalAlignProp)(verticalAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useWidthProp)(width, 'wide'), className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(TableCell, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(TableCell, props);
+
+  if (!_lib__WEBPACK_IMPORTED_MODULE_7__.isNil(children)) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+      className: classes
+    }), children);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), _elements_Icon__WEBPACK_IMPORTED_MODULE_8__.default.create(icon), content);
+}
+
+TableCell.handledProps = ["active", "as", "children", "className", "collapsing", "content", "disabled", "error", "icon", "negative", "positive", "selectable", "singleLine", "textAlign", "verticalAlign", "warning", "width"];
+TableCell.defaultProps = {
+  as: 'td'
+};
+TableCell.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** A cell can be active or selected by a user. */
+  active: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** A cell can be collapsing so that it only uses as much space as required. */
+  collapsing: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Shorthand for primary content. */
+  content: _lib__WEBPACK_IMPORTED_MODULE_9__.contentShorthand,
+
+  /** A cell can be disabled. */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A cell may call attention to an error or a negative value. */
+  error: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Add an Icon by name, props object, or pass an <Icon /> */
+  icon: _lib__WEBPACK_IMPORTED_MODULE_9__.itemShorthand,
+
+  /** A cell may let a user know whether a value is bad. */
+  negative: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A cell may let a user know whether a value is good. */
+  positive: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A cell can be selectable. */
+  selectable: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A cell can specify that its contents should remain on a single line and not wrap. */
+  singleLine: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table cell can adjust its text alignment. */
+  textAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash_es_without__WEBPACK_IMPORTED_MODULE_10__.default)(_lib__WEBPACK_IMPORTED_MODULE_11__.TEXT_ALIGNMENTS, 'justified')),
+
+  /** A table cell can adjust its text alignment. */
+  verticalAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_11__.VERTICAL_ALIGNMENTS),
+
+  /** A cell may warn a user. */
+  warning: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table can specify the width of individual columns independently. */
+  width: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_11__.WIDTHS)
+} : 0;
+TableCell.create = (0,_lib__WEBPACK_IMPORTED_MODULE_12__.createShorthandFactory)(TableCell, function (content) {
+  return {
+    content: content
+  };
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TableCell);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableFooter.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Table/TableFooter.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _TableHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TableHeader */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableHeader.js");
+
+
+
+
+
+/**
+ * A table can have a footer.
+ */
+
+function TableFooter(props) {
+  var as = props.as;
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_3__.default)(TableFooter, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_TableHeader__WEBPACK_IMPORTED_MODULE_4__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    as: as
+  }));
+}
+
+TableFooter.handledProps = ["as"];
+TableFooter.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().elementType)
+} : 0;
+TableFooter.defaultProps = {
+  as: 'tfoot'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TableFooter);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableHeader.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Table/TableHeader.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/childrenUtils.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+
+
+
+
+
+/**
+ * A table can have a header.
+ */
+
+function TableHeader(props) {
+  var children = props.children,
+      className = props.className,
+      content = props.content,
+      fullWidth = props.fullWidth;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)((0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(fullWidth, 'full-width'), className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(TableHeader, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(TableHeader, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), _lib__WEBPACK_IMPORTED_MODULE_7__.isNil(children) ? content : children);
+}
+
+TableHeader.handledProps = ["as", "children", "className", "content", "fullWidth"];
+TableHeader.defaultProps = {
+  as: 'thead'
+};
+TableHeader.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** Shorthand for primary content. */
+  content: _lib__WEBPACK_IMPORTED_MODULE_8__.contentShorthand,
+
+  /** A definition table can have a full width header or footer, filling in the gap left by the first column. */
+  fullWidth: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TableHeader);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableHeaderCell.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Table/TableHeaderCell.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _TableCell__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./TableCell */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableCell.js");
+
+
+
+
+
+
+/**
+ * A table can have a header cell.
+ */
+
+function TableHeaderCell(props) {
+  var as = props.as,
+      className = props.className,
+      sorted = props.sorted;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)((0,_lib__WEBPACK_IMPORTED_MODULE_4__.useValueAndKey)(sorted, 'sorted'), className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(TableHeaderCell, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_TableCell__WEBPACK_IMPORTED_MODULE_6__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    as: as,
+    className: classes
+  }));
+}
+
+TableHeaderCell.handledProps = ["as", "className", "sorted"];
+TableHeaderCell.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** A header cell can be sorted in ascending or descending order. */
+  sorted: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(['ascending', 'descending'])
+} : 0;
+TableHeaderCell.defaultProps = {
+  as: 'th'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TableHeaderCell);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableRow.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/collections/Table/TableRow.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var lodash_es_without__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lodash-es/without */ "./node_modules/lodash-es/without.js");
+/* harmony import */ var lodash_es_map__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lodash-es/map */ "./node_modules/lodash-es/map.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/childrenUtils.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/SUI.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/factories.js");
+/* harmony import */ var _TableCell__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./TableCell */ "./node_modules/semantic-ui-react/dist/es/collections/Table/TableCell.js");
+
+
+
+
+
+
+
+
+/**
+ * A table can have rows.
+ */
+
+function TableRow(props) {
+  var active = props.active,
+      cellAs = props.cellAs,
+      cells = props.cells,
+      children = props.children,
+      className = props.className,
+      disabled = props.disabled,
+      error = props.error,
+      negative = props.negative,
+      positive = props.positive,
+      textAlign = props.textAlign,
+      verticalAlign = props.verticalAlign,
+      warning = props.warning;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)((0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(active, 'active'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(disabled, 'disabled'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(error, 'error'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(negative, 'negative'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(positive, 'positive'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(warning, 'warning'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useTextAlignProp)(textAlign), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useVerticalAlignProp)(verticalAlign), className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(TableRow, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(TableRow, props);
+
+  if (!_lib__WEBPACK_IMPORTED_MODULE_7__.isNil(children)) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+      className: classes
+    }), children);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), (0,lodash_es_map__WEBPACK_IMPORTED_MODULE_8__.default)(cells, function (cell) {
+    return _TableCell__WEBPACK_IMPORTED_MODULE_9__.default.create(cell, {
+      defaultProps: {
+        as: cellAs
+      }
+    });
+  }));
+}
+
+TableRow.handledProps = ["active", "as", "cellAs", "cells", "children", "className", "disabled", "error", "negative", "positive", "textAlign", "verticalAlign", "warning"];
+TableRow.defaultProps = {
+  as: 'tr',
+  cellAs: 'td'
+};
+TableRow.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** A row can be active or selected by a user. */
+  active: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** An element type to render as (string or function). */
+  cellAs: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** Shorthand array of props for TableCell. */
+  cells: _lib__WEBPACK_IMPORTED_MODULE_10__.collectionShorthand,
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** A row can be disabled. */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A row may call attention to an error or a negative value. */
+  error: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A row may let a user know whether a value is bad. */
+  negative: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A row may let a user know whether a value is good. */
+  positive: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** A table row can adjust its text alignment. */
+  textAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash_es_without__WEBPACK_IMPORTED_MODULE_11__.default)(_lib__WEBPACK_IMPORTED_MODULE_12__.TEXT_ALIGNMENTS, 'justified')),
+
+  /** A table row can adjust its vertical alignment. */
+  verticalAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_12__.VERTICAL_ALIGNMENTS),
+
+  /** A row may warn a user. */
+  warning: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool)
+} : 0;
+TableRow.create = (0,_lib__WEBPACK_IMPORTED_MODULE_13__.createShorthandFactory)(TableRow, function (cells) {
+  return {
+    cells: cells
+  };
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TableRow);
 
 /***/ }),
 
@@ -86310,6 +88178,79 @@ ButtonOr.propTypes =  true ? {
   text: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().number), (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)])
 } : 0;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ButtonOr);
+
+/***/ }),
+
+/***/ "./node_modules/semantic-ui-react/dist/es/elements/Container/Container.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/semantic-ui-react/dist/es/elements/Container/Container.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/classNameBuilders.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getUnhandledProps.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/getElementType.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/childrenUtils.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/customPropTypes.js");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../lib */ "./node_modules/semantic-ui-react/dist/es/lib/SUI.js");
+
+
+
+
+
+/**
+ * A container limits content to a maximum width.
+ */
+
+function Container(props) {
+  var children = props.children,
+      className = props.className,
+      content = props.content,
+      fluid = props.fluid,
+      text = props.text,
+      textAlign = props.textAlign;
+  var classes = (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)('ui', (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(text, 'text'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useKeyOnly)(fluid, 'fluid'), (0,_lib__WEBPACK_IMPORTED_MODULE_4__.useTextAlignProp)(textAlign), 'container', className);
+  var rest = (0,_lib__WEBPACK_IMPORTED_MODULE_5__.default)(Container, props);
+  var ElementType = (0,_lib__WEBPACK_IMPORTED_MODULE_6__.default)(Container, props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ElementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
+    className: classes
+  }), _lib__WEBPACK_IMPORTED_MODULE_7__.isNil(children) ? content : children);
+}
+
+Container.handledProps = ["as", "children", "className", "content", "fluid", "text", "textAlign"];
+Container.propTypes =  true ? {
+  /** An element type to render as (string or function). */
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+
+  /** Primary content. */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node),
+
+  /** Additional classes. */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
+
+  /** Shorthand for primary content. */
+  content: _lib__WEBPACK_IMPORTED_MODULE_8__.contentShorthand,
+
+  /** Container has no maximum width. */
+  fluid: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Reduce maximum width to more naturally accommodate text. */
+  text: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
+
+  /** Align container text. */
+  textAlign: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(_lib__WEBPACK_IMPORTED_MODULE_9__.TEXT_ALIGNMENTS)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Container);
 
 /***/ }),
 
