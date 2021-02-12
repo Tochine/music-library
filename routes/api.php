@@ -18,7 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['namespace' => 'Api'], function() {
-    Route::get('/musics', 'MusicController@index');
-    Route::post('/music/store', 'MusicController@store');
+    // Route::get('/musics', 'MusicController@index');
+    // Route::post('/music/store', 'MusicController@store');
+    Route::apiResource('/music', 'MusicController');
 });
 

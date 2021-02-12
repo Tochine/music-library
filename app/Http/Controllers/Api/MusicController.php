@@ -16,7 +16,22 @@ class MusicController extends Controller
      */
     public function index()
     {
-        return $musics = Music::all();
+        $musics = Music::all();
+        return response()->json($musics);
+        // if($musics->isEmpty()){
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => 'No music available',
+        //         'musics' => NULL
+        //     ], 204);
+        // }else{
+        //     return response()->json([
+        //         'status' => true,
+        //         'message' => 'Music list',
+        //         'music' => $musics
+        //     ], 200);
+        // }
+        
     }
 
     /**
@@ -71,7 +86,7 @@ class MusicController extends Controller
                 'status' => true,
                 'message' =>  "Music stored successfullu",
                 'data' => $music
-            ]);
+            ], 201);
         }
     }
 
