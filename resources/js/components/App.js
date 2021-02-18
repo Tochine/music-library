@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css';
+import { Container, Grid } from 'semantic-ui-react'
 import Nav from './Nav'
 import MusicList from './MusicList'
 import AddMusic from './AddMusic'
-import { Container, Grid } from 'semantic-ui-react'
+import EditMusic from './EditMusic'
 import {
     BrowserRouter as Router,
     Switch,
@@ -23,6 +24,7 @@ function App() {
                                 <Switch>
                                     <Route path="/" exact component={MusicList} />
                                     <Route path="/addMusic" exact component={AddMusic} />
+                                    <Route path="/edit/music/:id" exact component={EditMusic} />
                                 </Switch>
                             </Grid.Column>
                         </Grid.Row>

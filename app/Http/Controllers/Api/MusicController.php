@@ -6,9 +6,33 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Music;
 use Validator;
+use Response;
 
 class MusicController extends Controller
 {
+    
+    public function form($form)
+    {
+        $formData = Form::findOrFail($form);
+        return response()->json($formData);
+    }
+
+    public function formLab(Request $request)
+    {
+       
+
+
+        $data = json_encode($request->all());
+
+
+        
+        $lab = Music::create([
+            'title' => $data
+        ]); 
+       
+
+        return unserialize($lab);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,20 +41,17 @@ class MusicController extends Controller
     public function index()
     {
         $musics = Music::all();
-        return response()->json($musics);
-        // if($musics->isEmpty()){
-        //     return response()->json([
-        //         'status' => false,
-        //         'message' => 'No music available',
-        //         'musics' => NULL
-        //     ], 204);
-        // }else{
-        //     return response()->json([
-        //         'status' => true,
-        //         'message' => 'Music list',
-        //         'music' => $musics
-        //     ], 200);
-        // }
+        //return response()->json($musics);
+        if($musics->isEmpty()){
+            return Response::json([
+                'status' => false,
+                'message' => 'No music found!',
+                'music' => NULL
+            ]);
+        }else{
+            return Response::json($musics);
+        }
+
         
     }
 

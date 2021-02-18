@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Label, Menu, Table, TableCell } from 'semantic-ui-react'
+import { Button, Table, Header } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
@@ -12,20 +12,21 @@ class MusicList extends Component {
     }
 
 
-    fetchMusics = async () => {
-        const response = await axios.get('api/music')
+    //fetchMusics = async () => {
+        //const response = await axios.get('api/music')
         //console.log()
 
         // if(response.data.status === true){
         //     this.setState({musicList: response});
         // }
-        console.log(response);
-    }
+        //console.log(response);
+    //}
 
     componentDidMount(){
         //this.fetchMusics()
         //Call api and update Music
         axios.get('api/music').then(res => {
+            //console.log(res)
             this.setState({
                 musicList: res.data
             })
@@ -41,7 +42,10 @@ class MusicList extends Component {
 
         return(
             <div>
-                <h1>Musics</h1>
+                <Link to="/addMusic">
+                    {/* <Menu.Item name='Add Music' /> */}
+                    <Button primary>New Music</Button>
+                </Link>
                 <Table celled>
                     <Table.Header>
                         <Table.Row>
@@ -61,6 +65,13 @@ class MusicList extends Component {
                                     <Table.Cell>{music.artist}</Table.Cell>
                                     <Table.Cell>{music.genre}</Table.Cell>
                                     <Table.Cell>{music.album}</Table.Cell>
+                                    <Table.Cell>
+                                        <p>
+                                            <Button primary>View</Button>
+                                            <Link to={`/edit/music/${music.id}`} className="ui orange button" >Edit</Link>
+                                            <Button color="red">Delete</Button>
+                                        </p>
+                                    </Table.Cell>
                                 </Table.Row>
                             ))}
                         </Table.Body>

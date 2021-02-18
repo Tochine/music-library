@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { Form, Grid, Container, Header } from 'semantic-ui-react';
-import axios from 'axios';
+import React, { Component } from 'react'
+import axios from 'axios'
+import { Form, Grid, Container, Header } from 'semantic-ui-react'
 
-class AddMusic extends Component {
-
+class EditMusic extends Component {
     state = {
         musicId: '',
         title: '',
@@ -12,18 +11,15 @@ class AddMusic extends Component {
         album: ''
     }
 
-    handleInputField = (e) => {
-        this.setState({[e.target.name]: e.target.value})
+    handleInput = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
-     createNewMusic = async (e) => {
-        e.preventDefault();
+    updateMusic = (e) => {
+        e.defaultPrevent()
 
-        const response = await axios.post('api/music', this.state);
-        this.setState({musicId: '', title: '', artist: '', genre: '', album: ''})
-        if(response.data.status === true){
-            this.props.history.push("/");
-        }
     }
 
     render() {
@@ -34,14 +30,14 @@ class AddMusic extends Component {
                         <Grid.Row>
                             <Grid.Column>
                                 <Header padded={true}>Edit Music</Header>
-                                <Form onSubmit={this.createNewMusic}>
+                                <Form onSubmit={this.updateMusic}>
                                     <Form.Field>
                                         <label>Music ID</label>
                                         <input placeholder='Music ID' name="musicId" value={this.state.musicId} onChange={this.handleInputField} />
                                     </Form.Field>
                                     <Form.Field>
                                         <label>Title</label>
-                                        <input placeholder='Title' name="title" value={this.title} onChange={this.handleInputField} />
+                                        <input placeholder='Title' name="title" value={this.state.title} onChange={this.handleInputField} />
                                     </Form.Field>
                                     <Form.Field>
                                         <label>Artist</label>
@@ -56,7 +52,7 @@ class AddMusic extends Component {
                                         <input placeholder='Album' name="album" value={this.state.album}  onChange={this.handleInputField}  />
                                     </Form.Field>
                                     <Form.Field>
-                                        <input type="submit" className="ui button" value="Add" />
+                                        <input type="submit" className="ui button" value="Update" />
                                     </Form.Field>
                                 </Form>
                             </Grid.Column>
@@ -67,7 +63,6 @@ class AddMusic extends Component {
             </div>
         )
     }
-
 }
 
-export default AddMusic;
+export default EditMusic
